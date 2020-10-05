@@ -1,18 +1,25 @@
 Translation Searcher
 =================
 
-Иструкция
+Инструкция
 ------------
 Скачиваете и устанавливаете последнюю версию [Android Studio](https://developer.android.com/studio).
+
 После запуска переходите File -> New -> project from Version Control...
+
 В поле *URL* вводите этот git.
-После загрузки и синхронизации запустите сборку APK-файла: Build -> Build Bundle(s)/APK(s) -> Build APK(s).
+
+После загрузки и синхронизации запустите сборку APK-файла: **Build -> Build Bundle(s)/APK(s) -> Build APK(s)**
 
 Когда создастся APK-файл? справа внизу выведется сообщение:
+
 _Build APK(s)_
+
 _APK(s) generated successfully_
 
-Передите в папку и скопируйте полученный APK на телефон.
+
+Перейдите в папку и скопируйте полученный APK на телефон.
+
 
 Сторонние библиотеки
 ------------
