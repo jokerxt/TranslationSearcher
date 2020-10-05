@@ -5,7 +5,7 @@ Translation Searcher
 ------------
 Скачиваете и устанавливаете последнюю версию [Android Studio](https://developer.android.com/studio).
 
-После запуска переходите File -> New -> project from Version Control...
+После запуска переходите **File -> New -> project from Version Control...**
 
 В поле *URL* вводите этот git.
 
