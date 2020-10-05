@@ -43,7 +43,7 @@ internal class MeaningFragment : MviFragment<MeaningViewModel, Wish, ViewState, 
         if (image.drawable != null) return
         
         Glide.with(image)
-            .load("http:${state.imageUrl}")
+            .load("https:${state.imageUrl}")
             .progressBarView(loadingImageProgress)
             .error(ContextCompat.getDrawable(requireContext(), R.drawable.meaning_ic_load_failed))
             .into(image)
