@@ -1,0 +1,47 @@
+android {
+    compileSdkVersion Version.compileVersion
+
+    defaultConfig {
+        minSdkVersion Version.minVersion
+        targetSdkVersion Version.targetVersion
+
+        versionCode Release.versionCode
+        versionName Release.versionName
+
+        vectorDrawables.useSupportLibrary = true
+    }
+
+    compileOptions {
+        sourceCompatibility Version.javaVersion
+        targetCompatibility Version.javaVersion
+    }
+
+    kotlinOptions {
+        jvmTarget = Version.javaVersionString
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+
+        release {
+            minifyEnabled true
+        }
+    }
+
+    packagingOptions {
+        exclude 'META-INF/api.kotlin_module'
+        exclude 'META-INF/impl.kotlin_module'
+
+        exclude 'META-INF/api_release.kotlin_module'
+        exclude 'META-INF/impl_release.kotlin_module'
+
+        exclude 'META-INF/api_debug.kotlin_module'
+        exclude 'META-INF/impl_debug.kotlin_module'
+    }
+}

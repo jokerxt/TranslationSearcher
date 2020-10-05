@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="searcher_entered_word_font_size">24sp</dimen>
+</resources>

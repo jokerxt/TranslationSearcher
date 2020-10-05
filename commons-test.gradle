@@ -1,0 +1,8 @@
+dependencies {
+    // JUnit
+    testImplementation TestLibraries.junit
+
+    // Mockito
+    testImplementation TestLibraries.mockito
+    testImplementation TestLibraries.mockitoUtil
+}

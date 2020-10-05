@@ -1,0 +1,26 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    buildTypes {
+        debug {
+            applicationIdSuffix App.debugSuffix
+            minifyEnabled false
+            shrinkResources false
+
+            kapt {
+                javacOptions {
+                    option("-Xmaxerrs", 1000)
+                }
+            }
+        }
+
+        release {
+            minifyEnabled true
+            shrinkResources true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}

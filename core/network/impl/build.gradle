@@ -1,0 +1,28 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: '../../../commons-android.gradle'
+
+android {
+    defaultConfig {
+        buildConfigField "long", "NETWORK_READ_TIMEOUT", '180'
+        buildConfigField "long", "NETWORK_WRITE_TIMEOUT", '180'
+        buildConfigField "long", "NETWORK_CONNECT_TIMEOUT", '180'
+        buildConfigField "String", "BASE_URL", '"https://dictionary.skyeng.ru/api/public"'
+        buildConfigField "String", "VERISON_API", '"v1"'
+    }
+}
+
+dependencies {
+    implementation project(CommonModule.androidUtil)
+
+    implementation project(CoreModule.networkApi)
+
+    // Network
+    implementation Libraries.gson
+    implementation Libraries.retrofit
+    implementation Libraries.retrofitRxAdapter
+    implementation Libraries.retrofitGsonConverter
+    debugImplementation DebugLibraries.chuck
+    releaseImplementation DebugLibraries.chuckRelease
+}

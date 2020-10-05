@@ -1,0 +1,30 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: '../../../commons-android.gradle'
+
+android {
+    defaultConfig {
+        buildConfigField "String", "DB_NAME", '"translation_searcher"'
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments += [ "room.incremental":"true" ]
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation project(CommonModule.androidUtil)
+    implementation project(CoreModule.databaseApi)
+
+    // Database
+    implementation Libraries.room
+    kapt Libraries.roomCompiler
+    implementation Libraries.roomRx
+
+    // Parse
+    implementation Libraries.gson
+}

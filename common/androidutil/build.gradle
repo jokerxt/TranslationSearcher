@@ -1,0 +1,18 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: '../../commons-android.gradle'
+
+dependencies {
+    api project(CommonModule.kotlin)
+
+    // Support
+    api Libraries.appCompat
+    api Libraries.coreKtx
+
+    // Rx
+    api Libraries.rxAndroid
+
+    // Parse
+    implementation Libraries.gson
+}

@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="searcher_entered_word_hint">Введите слово</string>
+    <string name="searcher_empty_results_label">Поиск не принес езультатов :(</string>
+</resources>

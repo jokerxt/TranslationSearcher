@@ -1,0 +1,17 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply from: '../../../commons-android.gradle'
+
+// for Test
+apply from: '../../../commons-test.gradle'
+
+android.resourcePrefix 'searcher_'
+
+dependencies {
+    implementation project(CommonModule.android)
+    implementation project(CoreModule.networkApi)
+    implementation project(CoreModule.databaseApi)
+
+    implementation project(FeatureModule.searcherApi)
+}

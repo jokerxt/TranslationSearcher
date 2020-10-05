@@ -1,0 +1,17 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    // Support
+    api Libraries.kotlin
+
+    // DI
+    api Libraries.koin
+
+    // Rx
+    api Libraries.rxJava
+    api Libraries.rxKotlin
+
+    // Parse
+    implementation Libraries.gson
+}

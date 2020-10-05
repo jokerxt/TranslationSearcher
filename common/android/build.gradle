@@ -1,0 +1,27 @@
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: '../../commons-android.gradle'
+
+dependencies {
+    api project(CommonModule.androidUtil)
+
+    // Support
+    api Libraries.fragmentKtx
+
+    // DI
+    api Libraries.koinViewModel
+
+    // UI
+    api Libraries.material
+    api Libraries.constraintLayout
+    api Libraries.recycler
+    api Libraries.recyclerHannesDorfmann
+    api Libraries.glide
+    kapt Libraries.glideCompiler
+
+    // Rx
+    api Libraries.rxBinding
+    api Libraries.rxBindingDesign
+}

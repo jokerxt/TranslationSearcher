@@ -1,0 +1,33 @@
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
+}
+
+apply from: '../commons-android.gradle'
+apply from: '../app-build-types.gradle'
+
+android {
+    defaultConfig {
+        applicationId App.id
+    }
+}
+
+dependencies {
+    implementation project(CommonModule.android)
+
+    // Core
+    implementation project(CoreModule.navigationApi)
+    implementation project(CoreModule.navigationImpl)
+    implementation project(CoreModule.databaseApi)
+    implementation project(CoreModule.databaseImpl)
+    implementation project(CoreModule.networkImpl)
+    implementation project(CoreModule.networkApi)
+
+    // Features
+    implementation project(FeatureModule.searcherApi)
+    implementation project(FeatureModule.searcherImpl)
+    implementation project(FeatureModule.meaningApi)
+    implementation project(FeatureModule.meaningImpl)
+}
