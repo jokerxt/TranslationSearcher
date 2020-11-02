@@ -15,13 +15,13 @@ import jxt.translationsearcher.searcher_impl.presentation.SearcherInteractor
 import jxt.translationsearcher.searcher_impl.presentation.SearcherViewModel
 import org.koin.dsl.module
 
-val searcherFeatureModule = module {
+val searcherFeatureModule get() = module {
     factory<SearcherFeature> { (dependencies: SearcherFeatureDependencies) ->
         SearcherFeatureImpl(dependencies)
     }
 }
 
-internal val searcherFeatureDynamicModule = module {
+internal val searcherFeatureDynamicModule get() = module {
     linkedScope<SearcherFragment, SearcherViewModel> {
         scopedViewModel { SearcherViewModel(interactor = get()) }
         scoped<SearcherInteractor> { SearcherInteractorImpl(repository = get()) }

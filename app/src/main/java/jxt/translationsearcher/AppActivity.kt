@@ -6,14 +6,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import jxt.translationsearcher.android.Navigator
+import jxt.translationsearcher.android.initAndInject
 import jxt.translationsearcher.meaning_api.MeaningFeatureProvider
 import jxt.translationsearcher.searcher_api.SearcherFeatureProvider
-import org.koin.android.ext.android.inject
 
 class AppActivity : AppCompatActivity(), Navigator, FragmentManager.OnBackStackChangedListener {
-    
-    private val searcherFeatureProvider by inject<SearcherFeatureProvider>()
-    private val meaningFeatureProvider by inject<MeaningFeatureProvider>()
+
+    private val searcherFeatureProvider by initAndInject<SearcherFeatureProvider>()
+    private val meaningFeatureProvider by initAndInject<MeaningFeatureProvider>()
     
     private val canBack: Boolean
         get() = supportFragmentManager.backStackEntryCount > 0

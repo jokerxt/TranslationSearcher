@@ -15,13 +15,13 @@ import jxt.translationsearcher.meaning_impl.presentation.MeaningInteractor
 import jxt.translationsearcher.meaning_impl.presentation.MeaningViewModel
 import org.koin.dsl.module
 
-val meaningFeatureModule = module {
+val meaningFeatureModule get() = module {
     factory<MeaningFeature> { (dependencies: MeaningFeatureDependencies) ->
         MeaningFeatureImpl(dependencies)
     }
 }
 
-internal val meaningFeatureDynamicModule = module {
+internal val meaningFeatureDynamicModule get() = module {
     linkedScope<MeaningFragment, MeaningViewModel> {
         scopedViewModel { MeaningViewModel(interactor = get(), meaningId = get()) }
         scoped<MeaningInteractor> { MeaningInteractorImpl(repository = get()) }
