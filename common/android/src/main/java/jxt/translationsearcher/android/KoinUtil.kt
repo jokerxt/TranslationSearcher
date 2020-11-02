@@ -4,9 +4,6 @@ import android.content.ComponentCallbacks
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ViewModel
 import androidx.savedstate.SavedStateRegistryOwner
-import jxt.translationsearcher.android.base.LifecycleViewModel
-import jxt.translationsearcher.android.koin.findLastHolderNonLinkedScopeByPartId
-import jxt.translationsearcher.android.koin.mutualLink
 import jxt.translationsearcher.android.koin.whenScopeClose
 import jxt.translationsearcher.kotlin.contains
 import org.koin.android.ext.android.get
@@ -14,13 +11,10 @@ import org.koin.androidx.scope.lifecycleScope
 import org.koin.androidx.viewmodel.scope.getStateViewModel
 import org.koin.core.context.loadKoinModules
 import org.koin.core.context.unloadKoinModules
-import org.koin.core.definition.BeanDefinition
-import org.koin.core.definition.Definition
 import org.koin.core.module.Module
 import org.koin.core.parameter.ParametersDefinition
 import org.koin.core.parameter.parametersOf
 import org.koin.core.qualifier.Qualifier
-import org.koin.dsl.ScopeDSL
 import org.koin.java.KoinJavaComponent.getKoin
 import kotlin.reflect.KClass
 
@@ -36,43 +30,26 @@ private val Module.isAlreadyLoaded: Boolean
     get() = getKoin()._modules.contains {
         val typeName = firstDefinitionTypeName
         val scopeQualifier = firstOtherScopeQualifier
-
+        
         (typeName != null && it.firstDefinitionTypeName == typeName) ||
-                (scopeQualifier != null && it.firstOtherScopeQualifier == scopeQualifier)
+            (scopeQualifier != null && it.firstOtherScopeQualifier == scopeQualifier)
     }
 
-
-inline fun <reified T : LifecycleViewModel> ScopeDSL.scopedViewModel(
-    qualifier: Qualifier? = null,
-    override: Boolean = false,
-    noinline definition: Definition<T>
-): BeanDefinition<T> = scoped(qualifier, override, definition)
 
 fun <T : ViewModel> SavedStateRegistryOwner.scopedViewModel(
     viewModelClass: KClass<T>,
     parameters: ParametersDefinition = { parametersOf() }
 ) = lazy(LazyThreadSafetyMode.NONE) {
     lifecycleScope.run {
-        getStateViewModel(
-            owner = this@scopedViewModel,
-            clazz = viewModelClass,
-            parameters = parameters
-        ).also {
-            findLastHolderNonLinkedScopeByPartId(viewModelClass.java.simpleName)?.let { vmScope ->
-                if (!_linkedScope.contains(vmScope)) {
-                    mutualLink(vmScope)
-                    whenScopeClose { vmScope.unlink(it) }
-                }
-            }
-        }
+        getStateViewModel(owner = this@scopedViewModel, clazz = viewModelClass, parameters = parameters)
     }
 }
 
 fun LifecycleOwner.initLifecycleKoinModule(module: Module) {
     if (module.isAlreadyLoaded) return
-
+    
     loadKoinModules(module)
-
+    
     lifecycleScope.whenScopeClose {
         unloadKoinModules(module)
         // fix unload float-definitions
